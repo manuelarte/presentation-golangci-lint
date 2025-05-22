@@ -2,6 +2,11 @@ package packagesimple
 
 import "errors"
 
+const (
+	myconstant = "myconstant"
+	MyConstant = 1
+)
+
 type MyStruct struct {
 	a, b int
 }
