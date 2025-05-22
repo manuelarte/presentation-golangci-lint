@@ -1,0 +1,6 @@
+package simple
+
+// rate the case
+const _rate = 0 // want `unexported constant "rate" should be prefixed with _`
+
+const _one, _two = "ONE", "TWO" // want `unexported constants "ONE", TWO" should be prefixed with _`
