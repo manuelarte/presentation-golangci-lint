@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Golangci-lint: A journey to create a linter</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -15,6 +15,9 @@
 
     <style type="text/css">
       section { text-align: left; }
+      .tiny {
+        font-size: 22px;
+    }
     </style>
 
 	</head>
@@ -39,7 +42,7 @@
                   {"Kubernetes", "Docker"},
                 },
                 Interests: []string {
-                  "Open Source", "Domain Design", "Football",
+                  "Open Source", "Domain Driven Design", "Football",
                 },
             }
             </code></pre>
@@ -58,16 +61,62 @@
             <li><a href="#/create-your-first-linter">Create your first linter</a></li>
             <li><a href="#/my-experience-creating-linters">My experience creating linters</a></li>
             <li><a href="#/create-custom-module">Create custom module</a></li>
+            <li><a href="#/qa">Q/A</a></li>
           </ul>
         </section>
-        <section>
-          <section id="what-is-golangci-lint">What is golangci-lint</section>
-          <section>AST Tree Parser</section>
+        <section id="what-is-golangci-lint">
+          <section>
+            <h3>What is golangci-lint</h3>
+            <p>Golangci-lint is a fast linters runner for Go.</p>
+            <ul>
+              <li>Widely used.</li>
+              <li>More than 100 linters.</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Example configurations</h3>
+            <pre><code data-trim data-noescape>
+            version: 2
+            </code></pre>
+            <p>Others:</p>
+            <ul class="tiny">
+            <li><a target="_blank" href="https://github.com/ccoVeille/golangci-lint-config-examples/"</a>https://github.com/ccoVeille/golangci-lint-config-examples/</li>
+            <li><a target="_blank" href="https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322">https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322"</a></li>
+            </ul>
+             
+          </section>
+          <section>
+            <h3>AST Tree Parser</h3>
+            Explain how it works. Then show the project astexample.
+          </section>
         </section>
-        <section id="create-your-first-linter">Create your first linter</section>
+        <section id="create-your-first-linter">
+          <h3>Create your first linter</h3>
+          <p>Prefix unexported globals with <it>'_'</it>.</p> 
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- Left side: text or content -->
+            <div style="flex: 1; padding-right: 20px;">
+              ❌ Bad
+              <pre><code data-trim data-noescape>
+                const myConstant = "myConstant"
+                const errNotFound = "not found"
+              </code></pre>
+            </div>
+
+            <!-- Right side: image -->
+            <div style="flex: 1; text-align: center;">
+              ✅ Good
+              <pre><code data-trim data-noescape>
+                const _myConstant = "myConstant"
+                const errNotFound = "not found"
+              </code></pre>
+            </div>
+          </div>
+
+        </section>
         <section id="my-experience-creating-linters">My experience creating linters</section>
         <section id="create-custom-module">Create custom module</section>
-        <section>Q/A</section>
+        <section id="qa">Q/A</section>
           
 			</div>
 		</div>
