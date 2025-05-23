@@ -3,7 +3,7 @@ package main
 import (
 	"golang.org/x/tools/go/analysis/singlechecker"
 
-	unexportedconstantscheck "github.com/manuelarte/presentation-golangci-lint/jsontaglint"
+	"github.com/manuelarte/presentation-golangci-lint/unexportedconstantscheck"
 )
 
 func main() {
