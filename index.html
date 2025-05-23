@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style type="text/css">
+      section { text-align: left; }
+    </style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section id="title">
+          <h1>Golangci-lint</h1>
+          <h2>A journey to create a linter</h2>
+          <p>Powered by <a href="https://revealjs.com/">reveal.js</a></p>
+        </section>
+        <section>
+          <h3>About me</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- Left side: text or content -->
+            <div style="flex: 10; padding-right: 20px;">
+            <pre><code data-trim data-noescape>
+            var Me = Developer{
+                Name: "Manuel Doncel Martos",
+                Skills: [][]string{
+                  {"Java", "Go", "Python", "Spring Boot"},
+                  {"Kubernetes", "Docker"},
+                },
+                Interests: []string {
+                  "Open Source", "Domain Design", "Football",
+                },
+            }
+            </code></pre>
+            </div>
+
+            <!-- Right side: image -->
+            <div style="flex: 2; text-align: center;">
+              <img src="./qr-github-manuelarte.svg" alt="QR Code GitHub manuelarte" style="max-width: 100%; max-height: 400px;">
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Agenda</h3>
+          <ul>
+            <li><a href="#/what-is-golangci-lint">What is golangci-lint</a></li>
+            <li><a href="#/create-your-first-linter">Create your first linter</a></li>
+            <li><a href="#/my-experience-creating-linters">My experience creating linters</a></li>
+            <li><a href="#/create-custom-module">Create custom module</a></li>
+          </ul>
+        </section>
+        <section>
+          <section id="what-is-golangci-lint">What is golangci-lint</section>
+          <section>AST Tree Parser</section>
+        </section>
+        <section id="create-your-first-linter">Create your first linter</section>
+        <section id="my-experience-creating-linters">My experience creating linters</section>
+        <section id="create-custom-module">Create custom module</section>
+        <section>Q/A</section>
+          
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+        navigationMode: "linear",
+        slideNumber: true,
+        progress: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

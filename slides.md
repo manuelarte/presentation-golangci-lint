@@ -2,9 +2,9 @@
 marp: true
 title: Exploring Golangci-lint
 author: Manuel Doncel Martos
-description: Creating linters and custom plugin to keep the style in your applications.
-header: 'Header content'
-footer: 'Footer content'
+description: Creating linters and custom modules to keep the style in your applications consistent.
+header: 'Exploring Golangci-lint'
+footer: 'Manuel Doncel Martos'
 theme: beam
 paginate: true
 ---
@@ -33,26 +33,30 @@ Manuel Doncel Martos
 
 + What is `golangci-lint`?
 + My journey creating two linters.
-+ Create a custom plugin.
++ Create a custom module.
 + Q/A
 
 ---
 
 ## What is `golangci-lint`
 
+[Golangci-lint][1] is a fast linters runner for Go.
+
++ Contains more than 100 linters.
++ Used by many applications.
 ...
 
 ---
 
-## Create a custom plugin
+### Ast Tree Parser
 
-TODO
+---
 
-+ Think about creating the code of a linter that checks json tags camelCase-snakeCase, etc.
-+ Create custom golangci-lint exec with your custom plugins.
-+ Exercise of custom plugin, for example check that if it's a sync.Mutex the field name is `mu`.
+## Create a custom module
 
 ---
 
 <!-- _class: title -->
 # Q/A
+
+[1]: https://golangci-lint.run/
