@@ -1,4 +1,4 @@
-module github.com/manuelarte/presentation-golangci-lint/jsontaglint
+module github.com/manuelarte/presentation-golangci-lint/unexportedconstantscheck
 
 go 1.23.0
 
