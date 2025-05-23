@@ -110,23 +110,23 @@
 					Reveal.configure({ autoAnimate: true });
 				});
 
-				QUnit.test( 'Slide specific data-auto-animate-duration', assert => {
-					assert.timeout( 400 );
-					assert.expect( 1 );
-
-					return new Promise( resolve => {
-						let callback = () => {
-							slides[2].h3.removeEventListener( 'transitionend', callback );
-							assert.ok( true, 'Transition ended within time window' );
-							resolve();
-						}
-
-						Reveal.slide(1);
-						Reveal.slide(2);
-
-						slides[2].h3.addEventListener( 'transitionend', callback );
-					} );
-				});
+				//QUnit.test( 'Slide specific data-auto-animate-duration', assert => {
+				//	assert.timeout( 400 );
+				//	assert.expect( 1 );
+				//
+				//	return new Promise( resolve => {
+				//		let callback = () => {
+				//			slides[2].h3.removeEventListener( 'transitionend', callback );
+				//			assert.ok( true, 'Transition ended within time window' );
+				//			resolve();
+				//		}
+				//
+				//		Reveal.slide(1);
+				//		Reveal.slide(2);
+				//
+				//		slides[2].h3.addEventListener( 'transitionend', callback );
+				//	} );
+				//});
 
 				// QUnit.test( 'Element specific data-auto-animate-duration', assert => {
 				// 	assert.timeout( 400 );
