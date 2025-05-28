@@ -26,12 +26,9 @@ jobs:
           npm run build
 
       - name: Copy index.html
-        run: cp index.html dist/
-      - name: Copy css
-        run: mkdir dist/css && cp -r css/* dist/css/
-      - name: Copy js
-        run: mkdir dist/js && cp -r js/* dist/js
-
+        run: |
+          cp index.html dist/
+          cp -r plugin dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
