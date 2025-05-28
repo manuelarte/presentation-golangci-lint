@@ -34,7 +34,7 @@ func run(pass *analysis.Pass) (any, error) {
 			case *ast.ImportSpec:
 				fmt.Printf("ImportSpec: %s\n", casted.Path.Value)
 			case *ast.ValueSpec:
-				fmt.Printf("ImportSpec: %s\n", casted.Names)
+				fmt.Printf("ValueSpec: %s\n", casted.Names)
 			case *ast.FuncDecl:
 				fmt.Printf("FuncDecl: %q Params(%d) Returns(%d)\n", casted.Name.Name, len(casted.Type.Params.List), len(casted.Type.Results.List))
 			default:

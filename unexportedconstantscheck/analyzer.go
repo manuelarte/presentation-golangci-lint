@@ -3,6 +3,7 @@ package unexportedconstantscheck
 import (
 	"fmt"
 	"go/ast"
+
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
@@ -34,7 +35,6 @@ func run(pass *analysis.Pass) (any, error) {
 			println(valueSpec)
 			// End TODO(manuelarte)
 		}
-
 	})
 
 	//nolint:nilnil //any, error
