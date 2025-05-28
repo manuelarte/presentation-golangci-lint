@@ -25,13 +25,8 @@ jobs:
           # Add build commands if needed (e.g., for custom Reveal.js builds)
           npm run build
 
-      - name: Copy index.html
-        run: |
-          cp index.html dist/
-          cp -r plugin dist/
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./
