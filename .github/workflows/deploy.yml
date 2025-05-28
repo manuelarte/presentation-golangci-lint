@@ -28,9 +28,9 @@ jobs:
       - name: Copy index.html
         run: cp index.html dist/
       - name: Copy css
-        run: cp css/* dist/css/
+        run: mkdir dist/css && cp css/* dist/css/
       - name: Copy js
-        run: cp js/* dist/js
+        run: mkdir dist/js && cp js/* dist/js
 
 
       - name: Deploy to GitHub Pages
