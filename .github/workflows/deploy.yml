@@ -27,6 +27,11 @@ jobs:
 
       - name: Copy index.html
         run: cp index.html dist/
+      - name: Copy css
+        run: cp css/* dist/css/
+      - name: Copy js
+        run: cp js/* dist/js
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
