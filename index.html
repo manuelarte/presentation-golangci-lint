@@ -31,7 +31,8 @@
             <h1>Golangci-lint</h1>
             <h2>A journey to create a linter</h2>
             <p class="tiny">
-                Manuel Doncel Martos - <script>
+                Manuel Doncel Martos -
+                <script>
                     document.write(new Date().toLocaleDateString());
                 </script>
             </p>
@@ -119,8 +120,8 @@
             </code></pre>
                 <p>Others:</p>
                 <ul class="tiny">
-                    <li><a target="_blank" href="https://github.com/ccoVeille/golangci-lint-config-examples/"</a>
-                        https://github.com/ccoVeille/golangci-lint-config-examples/
+                    <li><a target="_blank" href="https://github.com/ccoVeille/golangci-lint-config-examples/">
+                        https://github.com/ccoVeille/golangci-lint-config-examples/</a>
                     </li>
                     <li><a target="_blank" href="https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322">https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322</a>
                     </li>
@@ -208,25 +209,32 @@
         </section>
         <section id="my-experience-creating-linters">
             <section>
-            <h3>🧐 My linters</h3>
-            <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
-            <ul>
-                <li><em>Constructors</em> after struct declaration.</li>
-                <li><em>Exported</em> methods before <em>unexported</em>.</li>
-            </ul>
-            <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a></p>
-            <ul>
-                <li><em>Embedded fields</em> declared before normal fields.</li>
-                <li>Space between the embedded fields and normal fields.</li>
-                <li><em>sync.Mutex</em> and <em>sync.RMutex</em> are not allowed as embedded fields.</li>
-            </ul>
+                <h3>🧐 My linters</h3>
+                <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
+                <ul>
+                    <li><em>Constructors</em> after struct declaration.</li>
+                    <li><em>Exported</em> methods before <em>unexported</em>.</li>
+                </ul>
+                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
+                </p>
+                <ul>
+                    <li><em>Embedded fields</em> declared before normal fields.</li>
+                    <li>Space between the embedded fields and normal fields.</li>
+                    <li><em>sync.Mutex</em> and <em>sync.RMutex</em> are not allowed as embedded fields.</li>
+                </ul>
             </section>
             <section>
                 <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
                 <table>
-                    <thead><tr><th>❌ Bad</th><th>✅ Good</th></tr></thead>
+                    <thead>
+                    <tr>
+                        <th>❌ Bad</th>
+                        <th>✅ Good</th>
+                    </tr>
+                    </thead>
                     <tbody>
-                    <tr><td>
+                    <tr>
+                        <td>
 
                         <pre><code data-trim data-noescape
                                    class="language-go">
@@ -253,7 +261,8 @@
                         ...
                         </code></pre>
 
-                    </td><td>
+                        </td>
+                        <td>
 
                         <pre><code data-trim data-noescape
                                    class="language-go">
@@ -281,17 +290,25 @@
                         ...
                         </code></pre>
 
-                    </td></tr>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
             </section>
             <section>
-                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a></p>
+                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
+                </p>
                 <table>
-                    <thead><tr><th>❌ Bad</th><th>✅ Good</th></tr></thead>
+                    <thead>
+                    <tr>
+                        <th>❌ Bad</th>
+                        <th>✅ Good</th>
+                    </tr>
+                    </thead>
                     <tbody>
-                    <tr><td>
+                    <tr>
+                        <td>
 
                         <pre><code data-trim data-noescape
                                    class="language-go">
@@ -301,7 +318,8 @@
                         }
                         </code></pre>
 
-                    </td><td>
+                        </td>
+                        <td>
 
                         <pre><code data-trim data-noescape
                                    class="language-go">
@@ -312,7 +330,8 @@
                         }
                         </code></pre>
 
-                    </td></tr>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
