@@ -3,8 +3,6 @@ package unexportedconstantscheck
 import (
 	"fmt"
 	"go/ast"
-	"strings"
-
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
@@ -31,29 +29,35 @@ func run(pass *analysis.Pass) (any, error) {
 	}
 
 	insp.Preorder(nodeFilter, func(n ast.Node) {
-		// TODO(manuelarte): to be done
+		if valueSpec, ok := n.(*ast.ValueSpec); ok {
+			// TODO(manuelarte): to be done
+			println(valueSpec)
+			// End TODO(manuelarte)
+		}
+
 	})
 
 	//nolint:nilnil //any, error
 	return nil, nil
 }
 
-func newUnexportedConstantsCheckDiag(vs *ast.ValueSpec) analysis.Diagnostic {
+func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 	msg := fmt.Sprintf("unexported constant %q should be prefixed with _",
-		strings.Join(getName(vs.Names), ","))
+		i.Name)
 
 	return analysis.Diagnostic{
-		Pos:            vs.Pos(),
-		Message:        msg,
-		SuggestedFixes: nil,
+		Pos:     i.Pos(),
+		Message: msg,
+		SuggestedFixes: []analysis.SuggestedFix{
+			{
+				Message: "unexported constant %q should be prefixed with _",
+				TextEdits: []analysis.TextEdit{
+					{
+						Pos:     i.Pos(),
+						NewText: []byte(fmt.Sprintf("_%s", i.Name)),
+					},
+				},
+			},
+		},
 	}
-}
-
-func getName(is []*ast.Ident) []string {
-	ns := make([]string, len(is))
-	for i, ident := range is {
-		ns[i] = ident.Name
-	}
-
-	return ns
 }

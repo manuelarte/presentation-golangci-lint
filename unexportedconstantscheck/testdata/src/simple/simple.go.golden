@@ -11,3 +11,8 @@ const (
 	Of = "Of"
 	errConstants = "error"
 )
+
+func aFunction(input int) int {
+	output := input * 2
+	return output
+}
