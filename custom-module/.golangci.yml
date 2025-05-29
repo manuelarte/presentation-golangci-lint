@@ -144,6 +144,10 @@ linters:
       align: false
     usetesting:
       os-temp-dir: true
+    custom:
+      unexportedconstantscheck:
+        type: "module"
+        description: Check whether unexported constants are prefixed with '_'.
 
   exclusions:
     presets:

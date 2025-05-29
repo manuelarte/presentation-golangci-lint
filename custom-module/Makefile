@@ -20,6 +20,7 @@ test: ## Run unit tests, alias: t
 
 fmt: format-code
 format-code: tidy ## Format go code and run the fixer, alias: fmt
-	golangci-lint fmt
-	golangci-lint run --fix ./...
+	golangci-lint custom -v
+	custom-gcl fmt
+	custom-gcl run --fix ./...
 .PHONY: fmt format-code
