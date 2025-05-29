@@ -47,6 +47,7 @@ func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 
 	return analysis.Diagnostic{
 		Pos:     i.Pos(),
+		End:     i.End(),
 		Message: msg,
 		SuggestedFixes: []analysis.SuggestedFix{
 			{
