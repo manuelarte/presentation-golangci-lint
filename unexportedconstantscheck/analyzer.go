@@ -54,7 +54,8 @@ func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 				Message: "unexported constant %q should be prefixed with _",
 				TextEdits: []analysis.TextEdit{
 					{
-						Pos:     i.Pos(),
+						Pos: i.Pos(),
+						// TODO(manuelarte): Can someone see the problem of fixing it?
 						NewText: []byte(fmt.Sprintf("_%s", i.Name)),
 					},
 				},
