@@ -11,12 +11,70 @@ Here I have the content to give the presentation about [golangci-lint][1]
 npm start
 ```
 
+## Go Projects
+
+### Ast Example
+
+Example on how the AST looks like for a small .go file
+
+```bash
+cd astexample && make t
+```
+
+### Unexported Constants Check
+
+Exercise to implement uber style guideline [Prefix Unerxported Globals with _](https://github.com/uber-go/guide/blob/master/style.md#prefix-unexported-globals-with-_).
+
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td>
+
+```go
+// foo.go
+
+const (
+  defaultPort = 8080
+  defaultUser = "user"
+)
+
+// bar.go
+
+func Bar() {
+  defaultPort := 9090
+  ...
+  fmt.Println("Default port", defaultPort)
+
+  // We will not see a compile error if the first line of
+  // Bar() is deleted.
+}
+```
+
+</td><td>
+
+```go
+// foo.go
+
+const (
+  _defaultPort = 8080
+  _defaultUser = "user"
+)
+```
+
+</td></tr>
+</tbody></table>
+
+To implement: [analyzer.go](./unexportedconstantscheck/analyzer.go)
+
+### Custom Module
+
+Small web app to run [custom plugin linters][4].
+
 ## TODO
 
 - Improve slides
-- Add code with running with custom linters
-  - linter to check that all the json are camelCase
 
 [1]: https://golangci-lint.run/
-[2]: https://marp.app/
+[2]: https://revealjs.com/
 [3]: https://github.com/jj-vcs/jj
+[4]: https://golangci-lint.run/plugins/module-plugins/
