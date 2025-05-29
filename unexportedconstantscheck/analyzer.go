@@ -32,7 +32,7 @@ func run(pass *analysis.Pass) (any, error) {
 	insp.Preorder(nodeFilter, func(n ast.Node) {
 		if valueSpec, ok := n.(*ast.ValueSpec); ok {
 			// TODO(manuelarte): to be done
-			println(valueSpec)
+			fmt.Printf("%+v\n", valueSpec)
 			// End TODO(manuelarte)
 		}
 	})

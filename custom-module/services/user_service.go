@@ -8,7 +8,9 @@ func NewUserService() UserService {
 	return UserService{}
 }
 
-func (s UserService) GetAll() []models.User {
+//nolint:revive // to be implemented
+func (s UserService) GetAll(page, size int) []models.User {
+	// TODO(manuelarte): handle page and size
 	return []models.User{
 		{
 			ID:       1,

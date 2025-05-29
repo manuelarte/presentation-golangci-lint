@@ -17,6 +17,9 @@ func NewUserController(service services.UserService) UserController {
 }
 
 func (c *UserController) GetAll(ctx *gin.Context) {
-	users := c.service.GetAll()
+	page := ctx.GetInt("page")
+	size := ctx.GetInt("size")
+
+	users := c.service.GetAll(page, size)
 	ctx.JSON(http.StatusOK, gin.H{"users": users})
 }
