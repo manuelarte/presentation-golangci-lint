@@ -32,7 +32,8 @@ func run(pass *analysis.Pass) (any, error) {
 	insp.Preorder(nodeFilter, func(n ast.Node) {
 		if valueSpec, ok := n.(*ast.ValueSpec); ok {
 			// TODO(manuelarte): to be done
-			println(valueSpec)
+			//nolint:forbidigo // remove later
+			fmt.Printf("%+v\n", valueSpec)
 			// End TODO(manuelarte)
 		}
 	})
@@ -41,19 +42,22 @@ func run(pass *analysis.Pass) (any, error) {
 	return nil, nil
 }
 
+//nolint:unused // to be used later
 func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 	msg := fmt.Sprintf("unexported constant %q should be prefixed with _",
 		i.Name)
 
 	return analysis.Diagnostic{
 		Pos:     i.Pos(),
+		End:     i.End(),
 		Message: msg,
 		SuggestedFixes: []analysis.SuggestedFix{
 			{
 				Message: "unexported constant %q should be prefixed with _",
 				TextEdits: []analysis.TextEdit{
 					{
-						Pos:     i.Pos(),
+						Pos: i.Pos(),
+						// TODO(manuelarte): Can someone see the problem of fixing it?
 						NewText: []byte(fmt.Sprintf("_%s", i.Name)),
 					},
 				},

@@ -1,0 +1,5 @@
+version: v2.1.6
+plugins:
+  # a plugin from a Go proxy
+  - module: "github.com/manuelarte/presentation-golangci-lint/unexportedconstantscheck"
+    path: "../unexportedconstantscheck"
