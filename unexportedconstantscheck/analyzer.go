@@ -58,7 +58,7 @@ func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 					{
 						Pos: i.Pos(),
 						// TODO(manuelarte): Can someone see the problem of fixing it?
-						NewText: []byte(fmt.Sprintf("_%s", i.Name)),
+						NewText: fmt.Appendf(nil, "_%s", i.Name),
 					},
 				},
 			},
