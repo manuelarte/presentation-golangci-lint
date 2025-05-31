@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Golangci-lint: A journey to create a linter</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/moon.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style type="text/css">
+        section {
+            text-align: left;
+        }
+
+        .tiny {
+            font-size: 22px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section id="title">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Left side: text or content -->
+                <div style="flex: 10; padding-right: 20px;">
+                    <h1>Golangci-lint</h1>
+                    <h2>A journey to create a linter</h2>
+                    <p class="tiny">
+                        Manuel Doncel Martos -
+                        <script>
+                            document.write(new Date().toLocaleDateString());
+                        </script>
+                    </p>
+                    <p class="tiny">
+                        <small>Powered by <a href="https://revealjs.com/">reveal.js</a></small>
+                    </p>
+                </div>
+
+                <!-- Right side: image -->
+                <div style="flex: 2; text-align: center;">
+                    <img src="./qrcode_manuelarte.github.io.png" alt="QR Code Slides"
+                         style="max-width: 100%; max-height: 400px;">
+                </div>
+            </div>
+
+        </section>
+        <section>
+            <h3>About me</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Left side: text or content -->
+                <div style="flex: 10; padding-right: 20px;">
+            <pre><code data-trim data-noescape data-line-numbers
+                       class="language-go">
+            var Me = Developer{
+                Name: "Manuel Doncel Martos",
+                Skills: [][]string{
+                  {"Java", "Go", "Python", "Spring Boot"},
+                  {"Kubernetes", "Docker"},
+                },
+                Interests: []string {
+                  "Open Source", "Domain Driven Design", "Football",
+                },
+            }
+            </code></pre>
+                </div>
+
+                <!-- Right side: image -->
+                <div style="flex: 2; text-align: center;">
+                    <img src="./assets/qr-github-manuelarte.svg" alt="QR Code GitHub manuelarte"
+                         style="max-width: 100%; max-height: 400px;">
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Agenda</h3>
+            <ul>
+                <li><a href="#/what-is-golangci-lint">What is golangci-lint</a></li>
+                <li><a href="#/create-your-first-linter">Create your first linter</a></li>
+                <li><a href="#/my-experience-creating-linters">My experience creating linters</a></li>
+                <li><a href="#/create-custom-plugin">Create custom plugin</a></li>
+                <li><a href="#/qa">Q/A</a></li>
+            </ul>
+        </section>
+        <section id="what-is-golangci-lint">
+            <section>
+                <h3>What is golangci-lint</h3>
+
+                <p>Golangci-lint is a fast linters runner for Go.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <!-- Left side: text or content -->
+                    <div style="flex: 6; padding-right: 20px;">
+                        <ul>
+                            <li>Widely used.</li>
+                            <li>More than 100 linters.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Right side: image -->
+                    <div style="flex: 6; text-align: center;">
+                        <pre><code class="language-plantuml">
+                        @startuml
+                        skinparam backgroundColor transparent
+                        skinparam monochrome reverse
+                        !option handwritten true
+
+                        revive - [golangci-lint]
+                        gofmt - [golangci-lint]
+                        gofumpt - [golangci-lint]
+                        gci - [golangci-lint]
+                        ... - [golangci-lint]
+                        funcorder -- [golangci-lint]
+                        embeddedstructfieldcheck -- [golangci-lint]
+
+                        @enduml
+                        </code></pre>
+
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Example configurations</h3>
+                <pre><code data-trim data-noescape>
+            version: 2
+            </code></pre>
+                <p>Others:</p>
+                <ul class="tiny">
+                    <li><a target="_blank" href="https://github.com/ccoVeille/golangci-lint-config-examples/">
+                        https://github.com/ccoVeille/golangci-lint-config-examples/</a>
+                    </li>
+                    <li><a target="_blank" href="https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322">https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322</a>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>AST Parser</h3>
+                <pre><code class="language-plantuml">
+              @startwbs
+
+              skinparam backgroundColor transparent
+              skinparam monochrome reverse
+              !option handwritten true
+
+              * ast.File
+              ** ast.GenDecl
+              *** ast.ImportSpec
+              **** ast.BasicLit
+              ** ast.GenDecl
+              *** ast.ValueSpec
+              **** ast.Ident
+              **** ast.BasicLit
+              ** ast.GenDecl
+              *** ast.TypeSpec
+              *** ast.StructType
+              **** ast.FieldList
+              ***** ast.Field
+              ***** ast.Field
+              ** ast.FuncDecl
+              *** ast.FuncType
+              *** ast.FieldList
+              **** ast.Field
+              **** ast.Field
+              ** ...
+
+              @endwbs
+              </code></pre>
+                <p>File to test: <a target="_blank"
+                                    href="https://github.com/manuelarte/presentation-golangci-lint/blob/main/astexample/testdata/src/simple/simple.go">here</a>
+                </p>
+            </section>
+            <section>
+                <h3>Tools Analyzer</h3>
+                <p>Package <a target="_blank" href="https://pkg.go.dev/golang.org/x/tools">golang.org/x/tools</a></p>
+                <ul>
+                    <li>Analyzer</li>
+                    <li>Pass</li>
+                    <li>Diagnosis</li>
+                </ul>
+            </section>
+        </section>
+        <section id="create-your-first-linter">
+            <h3>Create your first linter</h3>
+            <p>Prefix unexported globals with
+                <it>'_'</it>
+                .
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Left side: text or content -->
+                <div style="flex: 1; padding-right: 20px;">
+                    ❌ Bad
+                    <pre><code data-trim data-noescape data-line-numbers
+                               class="language-go">
+                const myConstant = "myConstant"
+                const errNotFound = "not found"
+              </code></pre>
+                </div>
+
+                <!-- Right side: image -->
+                <div style="flex: 1; text-align: center;">
+                    ✅ Good
+                    <pre><code data-trim data-noescape
+                               class="language-go">
+                const _myConstant = "myConstant"
+                const errNotFound = "not found"
+              </code></pre>
+                </div>
+            </div>
+
+            <ul class="tiny">
+                <li>Identify</li>
+                <li>Suggest fix</li>
+            </ul>
+
+        </section>
+        <section id="my-experience-creating-linters">
+            <section>
+                <h3>🧐 My linters</h3>
+                <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
+                <ul>
+                    <li><em>Constructors</em> after struct declaration.</li>
+                    <li><em>Exported</em> methods before <em>unexported</em>.</li>
+                </ul>
+                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
+                </p>
+                <ul>
+                    <li><em>Embedded fields</em> declared before normal fields.</li>
+                    <li>Space between the embedded fields and normal fields.</li>
+                    <li><em>sync.Mutex</em> and <em>sync.RMutex</em> are not allowed as embedded fields.</li>
+                </ul>
+            </section>
+            <section>
+                <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>❌ Bad</th>
+                        <th>✅ Good</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+
+                        <pre><code data-trim data-noescape
+                                   class="language-go">
+                        // ❌ constructor before
+                        // struct declaration
+                        func NewMyStruct() *MyStruct {
+                            return &MyStruct{}
+                        }
+
+                        type MyStruct struct {
+                            Name string
+                        }
+
+                        // ❌ unexported method
+                        // placed before exported method
+                        func (m MyStruct) lenName() int {
+                            return len(m.Name)
+                        }
+
+                        func (m MyStruct) GetName() string {
+                            return m.Name
+                        }
+
+                        ...
+                        </code></pre>
+
+                        </td>
+                        <td>
+
+                        <pre><code data-trim data-noescape
+                                   class="language-go">
+                        type MyStruct struct {
+                            Name string
+                        }
+
+                        // ✅ constructor after
+                        // struct declaration and
+                        // before methods
+                        func NewMyStruct() *MyStruct {
+                            return &MyStruct{}
+                        }
+
+                        // ✅ exported methods before
+                        // unexported methods
+                        func (m MyStruct) GetName() string {
+                            return m.Name
+                        }
+
+                        func (m MyStruct) lenName() int {
+                            return len(m.Name)
+                        }
+
+                        ...
+                        </code></pre>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
+                </p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>❌ Bad</th>
+                        <th>✅ Good</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+
+                        <pre><code data-trim data-noescape
+                                   class="language-go">
+                        type Client struct {
+                          version int
+                          http.Client
+                        }
+                        </code></pre>
+
+                        </td>
+                        <td>
+
+                        <pre><code data-trim data-noescape
+                                   class="language-go">
+                        type Client struct {
+                          http.Client
+
+                          version int
+                        }
+                        </code></pre>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <section id="create-custom-plugin">
+          <h3>Create custom plugin</h3>
+          <p>More info: <a target="_blank" href="https://golangci-lint.run/plugins/module-plugins/">Module Plugin</a></p>
+          <p>Example here: <a target="_blank" href="./custom-plugin/">Custom Plugin</a></p>
+        </section>
+        <section data-background-image="./assets/q_a.jpeg" data-background-size="100%" id="qa">
+            <h3>Q/A</h3>
+        </section>
+
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        navigationMode: "linear",
+        slideNumber: true,
+        progress: true,
+        dependencies: [
+            {src: '//cdn.jsdelivr.net/npm/reveal-plantuml'},
+        ],
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
+</html>
