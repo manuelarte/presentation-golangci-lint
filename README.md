@@ -2,10 +2,14 @@
 
 Here I have the content to give the presentation about [golangci-lint][1]
 
+🔗[Link to the presentation][5]
+
 ## Tools
 
 - I am using [reveal.js][2] to create the slides.
 - I am using [Jujutsu][3] as a version control.
+
+To start the slides, inside the [./slides/](./slides/) folder, run:
 
 ```bash
 npm start
@@ -78,3 +82,4 @@ Small web app to run [custom plugin linters][4].
 [2]: https://revealjs.com/
 [3]: https://github.com/jj-vcs/jj
 [4]: https://golangci-lint.run/plugins/module-plugins/
+[5]: https://manuelarte.github.io/presentation-golangci-lint/
