@@ -3,11 +3,13 @@ on:
   push:
     branches:
       - main
-      - dev
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./slides
 
     steps:
       - name: Checkout repository
@@ -19,11 +21,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: slides
         run: npm install
 
       - name: Build
-        working-directory: slides
         run: |
           npm run build
 
@@ -31,4 +31,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./slides
+          publish_dir: ./
