@@ -62,7 +62,8 @@
             var Me = Developer{
                 Name: "Manuel Doncel Martos",
                 Skills: [][]string{
-                  {"Java", "Go", "Python", "Spring Boot"},
+                  {"Java", "Spring Boot"},
+                  {"Go", "Python"},
                   {"Kubernetes", "Docker"},
                 },
                 Interests: []string {
@@ -237,19 +238,13 @@
             </section>
             <section>
                 <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>❌ Bad</th>
-                        <th>✅ Good</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
 
-                        <pre><code data-trim data-noescape
-                                   class="language-go">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Left side: text or content -->
+                <div style="flex: 6; padding-right: 20px;">
+                  ❌ Bad
+                  <pre><code data-trim data-noescape data-line-numbers
+                       class="language-go">
                         // ❌ constructor before
                         // struct declaration
                         func NewMyStruct() *MyStruct {
@@ -271,13 +266,18 @@
                         }
 
                         ...
-                        </code></pre>
+                        type Client struct {
+                          version int
+                          http.Client
+                        }
+                 </code></pre>
+                </div>
 
-                        </td>
-                        <td>
-
-                        <pre><code data-trim data-noescape
-                                   class="language-go">
+                <!-- Right side: image -->
+                <div style="flex: 6; text-align: center;">
+                  ✅ Good
+                  <pre><code data-trim data-noescape
+                        class="language-go">
                         type MyStruct struct {
                             Name string
                         }
@@ -300,53 +300,38 @@
                         }
 
                         ...
-                        </code></pre>
-
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
+                  </code></pre>
+              </div>
             </section>
             <section>
-                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
-                </p>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>❌ Bad</th>
-                        <th>✅ Good</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
+              <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
+              </p>
 
-                        <pre><code data-trim data-noescape
-                                   class="language-go">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Left side: text or content -->
+                <div style="flex: 6; padding-right: 20px;">
+                  ❌ Bad
+                  <pre><code data-trim data-noescape data-line-numbers
+                       class="language-go">
                         type Client struct {
                           version int
                           http.Client
                         }
-                        </code></pre>
+                 </code></pre>
+                </div>
 
-                        </td>
-                        <td>
-
-                        <pre><code data-trim data-noescape
-                                   class="language-go">
+                <!-- Right side: image -->
+                <div style="flex: 6; text-align: center;">
+                  ✅ Good
+                  <pre><code data-trim data-noescape
+                        class="language-go">
                         type Client struct {
                           http.Client
 
                           version int
                         }
-                        </code></pre>
-
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
+                  </code></pre>
+              </div>
             </section>
         </section>
         <section id="create-custom-plugin">
