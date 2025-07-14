@@ -27,7 +27,7 @@ func TestAnalyzer(t *testing.T) {
 		t.Run(test.desc, func(t *testing.T) {
 			a := NewAnalyzer()
 
-			analysistest.Run(t, analysistest.TestData(), a, test.patterns)
+			analysistest.RunWithSuggestedFixes(t, analysistest.TestData(), a, test.patterns)
 		})
 	}
 }
