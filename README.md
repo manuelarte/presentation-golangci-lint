@@ -74,10 +74,6 @@ To implement: [analyzer.go](./unexportedconstantscheck/analyzer.go)
 
 Small web app to run [custom plugin linters][4].
 
-## TODO
-
-- Improve slides
-
 [1]: https://golangci-lint.run/
 [2]: https://revealjs.com/
 [3]: https://github.com/jj-vcs/jj
