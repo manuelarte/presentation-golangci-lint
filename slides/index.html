@@ -98,7 +98,7 @@
             <section>
                 <h3>What is golangci-lint</h3>
 
-                <p>Golangci-lint is a fast linters runner for Go.</p>
+                <p><a href="https://golangci-lint.run/" target="_blank">Golangci-lint</a> is a fast linters runner for Go.</p>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <!-- Left side: text or content -->
                     <div style="flex: 6; padding-right: 20px;">
@@ -191,6 +191,7 @@
             </section>
         </section>
         <section id="create-your-first-linter">
+          <section>
             <h3>Create your first linter</h3>
             <p>Prefix unexported globals with
                 <it>'_'</it>
@@ -222,22 +223,18 @@
                 <li>Identify</li>
                 <li>Suggest fix</li>
             </ul>
-
+          </section>
+         <section>
+           <h3>Let's</h3>
+           <img src="./assets/gopher.png" alt="go">
+         </section>
         </section>
         <section id="my-experience-creating-linters">
             <section>
                 <h3>🧐 My linters</h3>
-                <p><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></p>
                 <ul>
-                    <li><em>Constructors</em> after struct declaration.</li>
-                    <li><em>Exported</em> methods before <em>unexported</em>.</li>
-                </ul>
-                <p><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a>
-                </p>
-                <ul>
-                    <li><em>Embedded fields</em> declared before normal fields.</li>
-                    <li>Space between the embedded fields and normal fields.</li>
-                    <li><em>sync.Mutex</em> and <em>sync.RMutex</em> are not allowed as embedded fields.</li>
+                  <li><a target="_blank" href="https://github.com/manuelarte/funcorder">FuncOrder</a></li>
+                  <li><a target="_blank" href="https://github.com/manuelarte/embeddedstructfieldcheck">EmbeddedStructFieldCheck</a></li>
                 </ul>
             </section>
             <section>
@@ -342,8 +339,8 @@
         </section>
         <section id="create-custom-plugin">
           <h3>Create custom plugin</h3>
-          <p>More info: <a target="_blank" href="https://golangci-lint.run/plugins/module-plugins/">Module Plugin</a></p>
-          <p>Example here: <a target="_blank" href="./custom-plugin/">Custom Plugin</a></p>
+          <p>More info: <a href="https://golangci-lint.run/plugins/module-plugins/" target="_blank">Module Plugin</a></p>
+          <p>Example: <a href="https://github.com/manuelarte/presentation-golangci-lint/tree/main/custom-plugin" target="_blank">Custom Plugin</a></p>
         </section>
         <section data-background-image="./assets/q_a.jpeg" data-background-size="100%" id="qa">
             <h3>Q/A</h3>
