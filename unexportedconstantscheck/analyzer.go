@@ -57,6 +57,7 @@ func newUnexportedConstantsCheckDiag(i *ast.Ident) analysis.Diagnostic {
 				TextEdits: []analysis.TextEdit{
 					{
 						Pos: i.Pos(),
+						End: i.End(),
 						// TODO(manuelarte): Can someone see the problem of fixing it?
 						NewText: fmt.Appendf(nil, "_%s", i.Name),
 					},
