@@ -23,6 +23,17 @@
         }
     </style>
 
+    <script>
+      const now = new Date();
+
+      function addMinutes(date, minutes) {
+        return new Date(date.getTime() + minutes * 60000);
+      }
+
+      function formatHHmm(date) {
+        return date.toTimeString().split(' ')[0].slice(0, -3)
+      }
+    </script>
 </head>
 <body>
 <div class="reveal">
@@ -36,7 +47,7 @@
                     <p class="tiny">
                         Manuel Doncel Martos -
                         <script>
-                            document.write(new Date().toLocaleDateString());
+                            document.write(now.toLocaleDateString());
                         </script>
                     </p>
                     <p class="tiny">
@@ -69,7 +80,9 @@
                   {"Kubernetes", "Docker"},
                 },
                 Interests: []string {
-                  "Open Source", "Domain Driven Design", "Football",
+                  "Open Source",
+                  "Domain Driven Design",
+                  "Football",
                 },
             }
             </code></pre>
@@ -87,12 +100,39 @@
         <section>
             <h3>Agenda</h3>
             <ul>
-                <li><a href="#/what-is-golangci-lint">What is golangci-lint</a></li>
-                <li><a href="#/create-your-first-linter">Create your first linter</a></li>
-                <li><a href="#/my-experience-creating-linters">My experience creating linters</a></li>
-                <li><a href="#/create-custom-plugin">Create custom plugin</a></li>
-                <li><a href="#/qa">Q/A</a></li>
+                <li>
+                  <a href="#/what-is-golangci-lint">What is golangci-lint</a> 
+                  <script>document.write(formatHHmm(now))</script>
+                  (~10m) 
+                </li>
+                <li>
+                  <a href="#/create-your-first-linter">Create your first linter</a> 
+                  <script>document.write(formatHHmm(addMinutes(now, 10)))</script>
+                  (~15m) 
+                </li>
+                <li>
+                  <a href="#/my-experience-creating-linters">My experience creating linters</a> 
+                  <script>document.write(formatHHmm(addMinutes(now, 25)))</script>
+                  (~5m)
+                </li>
+                <li>
+                  <a href="#/create-custom-plugin">Create custom plugin</a>
+                  <script>document.write(formatHHmm(addMinutes(now, 30)))</script>
+                  (~15m)
+                </li>
+                <li>
+                  <a href="#/qa">Q/A</a> 
+                  <script>document.write(formatHHmm(addMinutes(now, 45)))</script>
+                  (~10m)
+                </li>
             </ul>
+        </section>
+        <section>
+          <h3>Vocabulary</h3>
+          Linter:
+          <blockquote cite="">
+            Automatically analyze source code for potential errors, stylistic issues, and violations of coding conventions
+          </blockquote>
         </section>
         <section id="what-is-golangci-lint">
             <section>
@@ -140,7 +180,12 @@
                     <li><a target="_blank" href="https://github.com/ccoVeille/golangci-lint-config-examples/">
                         https://github.com/ccoVeille/golangci-lint-config-examples/</a>
                     </li>
-                    <li><a target="_blank" href="https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322">https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322</a>
+                    <li>
+                      <a target="_blank" href="https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322">https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322</a>
+                    </li>
+
+                    <li>
+                      <a target="_blank" href="https://gist.github.com/manuelarte/76c3cedb1f819184a9a880883e6edd5f">https://gist.github.com/manuelarte/76c3cedb1f819184a9a880883e6edd5f</a>
                     </li>
                 </ul>
             </section>
